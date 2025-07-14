@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import SignIn from "./sign-in";
 import { SignOut } from "./signout-button";
-import { auth } from "@/lib/auth"; // Adjust the import path as necessary
+import { auth } from "@/lib/auth";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -19,10 +19,6 @@ import {
 
 const Navbar = async () => {
   const session = await auth();
-  // Fetch the current session
-
-  // Replace with actual admin check logic
-  // Assuming user role is stored in session
 
   return (
     <header className="border-b border-border bg-background">
@@ -42,11 +38,11 @@ const Navbar = async () => {
                 <DropdownMenuTrigger asChild>
                   <Avatar className="cursor-pointer">
                     <AvatarImage
-                      src={session?.user?.image || ""}
-                      alt={session?.user?.name || "User Avatar"}
+                      src={session?.user?.image ?? undefined}
+                      alt={session?.user?.name ?? "User Avatar"}
                     />
                     <AvatarFallback>
-                      {session?.user?.name?.charAt(0) || "U"}
+                      {session?.user?.name?.charAt(0) ?? "U"}
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>

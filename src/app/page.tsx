@@ -1,15 +1,13 @@
 import React from "react";
-import { prisma } from "@/lib/prisma";
 import PostCard from "@/components/PostCard";
 import { dummyPosts } from "../../dummeyPost";
+import { auth } from "@/lib/auth";
 
 const Home = async () => {
   const posts = dummyPosts || [];
-  const loading = true;
 
-  const users = await prisma.user.findMany({});
-
-  console.log(users);
+  const session = await auth();
+  console.log(session);
 
   return (
     <div className="min-h-screen bg-background container mx-auto p-4">
